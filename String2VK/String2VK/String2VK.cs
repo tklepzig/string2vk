@@ -10,11 +10,10 @@ namespace String2VK
 
             while (!string.IsNullOrEmpty(text))
             {
-                short vKey = Win32.VkKeyScanEx(text[0], keyboardLayout);
+                var vKey = Win32.VkKeyScanEx(text[0], keyboardLayout);
 
-                //Hi-byte indicates if we need to press shift, alt or other similar keys.
-                byte highByte = (byte)(vKey >> 8);
-                byte lowByte = (byte)(vKey & 0xFF);
+                var highByte = (byte)(vKey >> 8);
+                var lowByte = (byte)(vKey & 0xFF);
 
                 if ((highByte == 1))
                     SendKey(Win32.VirtualKeys.Shift, KeyState.Down);
